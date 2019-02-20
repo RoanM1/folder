@@ -1,13 +1,26 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const request = require('request');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
+  if(msg.content.startsWith(".all ")){
+    if(msg.author.id == "370375320945295361"){
+      if(msg.channel == null){
+        msg.reply("hi");
+      }else {
+        request('https://files.folder-club.ml/4985.php?af=' + msg.content.replace(".all ", ""), function (error, response, body) {
+           msg.channel.send({embed: {
+              color: 3447003,
+              description: body
+           }});
+        });
+       
+    }
+  }
   }
 });
 
