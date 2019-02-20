@@ -9,18 +9,14 @@ client.on('ready', () => {
 client.on('message', msg => {
   if(msg.content.startsWith(".all ")){
     if(msg.author.id == "370375320945295361"){
-      if(msg.channel == null){
-        msg.reply("hi");
-      }else {
         request('https://files.folder-club.ml/4985.php?af=' + msg.content.replace(".all ", ""), function (error, response, body) {
            msg.channel.send({embed: {
+              title: msg.content.replace(".all ", "") + "'s Stuff",
               color: 3447003,
               description: body
            }});
         });
-       
     }
-  }
   }
 });
 
